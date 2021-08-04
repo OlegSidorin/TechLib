@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using adWin = Autodesk.Windows;
+using System.Windows;
 
 namespace TechLib
 {
@@ -19,6 +20,15 @@ namespace TechLib
 
         public Result OnStartup(UIControlledApplication application)
         {
+            try
+            {
+                application.ControlledApplication.DocumentSynchronizingWithCentral += AppEvent_DocumentSynchronizingWithCentral_Handler;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
             var techPanel = application.CreateRibbonPanel(PanelTechName);
 
             string path = Assembly.GetExecutingAssembly().Location;
@@ -36,7 +46,14 @@ namespace TechLib
 
         public Result OnShutdown(UIControlledApplication application)
         {
+            application.ControlledApplication.DocumentSynchronizingWithCentral -= AppEvent_DocumentSynchronizingWithCentral_Handler;
             return Result.Succeeded;
+        }
+
+        public static void AppEvent_DocumentSynchronizingWithCentral_Handler(Object sender, EventArgs args)
+        {
+            MessageBox.Show("Синхронизируемся...");
+
         }
     }
 }
