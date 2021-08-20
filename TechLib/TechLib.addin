@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <RevitAddIns>
 	<AddIn Type="Application">
-		<Name>Для Технологов КПСП</Name>
+		<Name>Файлы ревита в работе на диске К</Name>
 		<Assembly>C:\Users\Sidorin_O\source\repos\TechLib\TechLib\bin\Debug\TechLib.dll</Assembly>
 		<AddInId>CAAEAD56-230A-44BB-BC50-E72A80527E6C</AddInId>
 		<FullClassName>TechLib.Main</FullClassName>

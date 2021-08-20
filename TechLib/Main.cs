@@ -17,17 +17,17 @@ namespace TechLib
     {
         public static string filename { get; set; } = @"C:\Users\Sidorin_O\Documents\TEST\dirinfo.txt";
         public static string TabName { get; set; } = "Надстройки";
-        public static string PanelTechName { get; set; } = "Технология";
+        public static string PanelTechName { get; set; } = "Диск К";
 
         public Result OnStartup(UIControlledApplication application)
         {
             var techPanel = application.CreateRibbonPanel(PanelTechName);
             string path = Assembly.GetExecutingAssembly().Location;
 
-            var TechBtnData = new PushButtonData("TechBtnData", "Добавить\nпараметры", path, "TechLib.AddParametersCommand")
+            var TechBtnData = new PushButtonData("TechBtnData", "Модели на К\nв работе", path, "TechLib.AllFilesCommand")
             {
                 ToolTipImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\tech-32.png", UriKind.Absolute)),
-                ToolTip = "Добавляет необходимые параметры для семейства ТХ"
+                ToolTip = "Создает отчет о файлах ревита на диске К"
             };
             var TechBtn = techPanel.AddItem(TechBtnData) as PushButton;
             TechBtn.LargeImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\tech-32.png", UriKind.Absolute));
