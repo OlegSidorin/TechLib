@@ -15,22 +15,13 @@ namespace TechLib
 {
     public class Main : IExternalApplication
     {
+        public static string filename { get; set; } = @"C:\Users\Sidorin_O\Documents\TEST\dirinfo.txt";
         public static string TabName { get; set; } = "Надстройки";
         public static string PanelTechName { get; set; } = "Технология";
 
         public Result OnStartup(UIControlledApplication application)
         {
-            try
-            {
-                application.ControlledApplication.DocumentSynchronizingWithCentral += AppEvent_DocumentSynchronizingWithCentral_Handler;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
             var techPanel = application.CreateRibbonPanel(PanelTechName);
-
             string path = Assembly.GetExecutingAssembly().Location;
 
             var TechBtnData = new PushButtonData("TechBtnData", "Добавить\nпараметры", path, "TechLib.AddParametersCommand")
@@ -46,14 +37,8 @@ namespace TechLib
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            application.ControlledApplication.DocumentSynchronizingWithCentral -= AppEvent_DocumentSynchronizingWithCentral_Handler;
             return Result.Succeeded;
         }
 
-        public static void AppEvent_DocumentSynchronizingWithCentral_Handler(Object sender, EventArgs args)
-        {
-            MessageBox.Show("Синхронизируемся...");
-
-        }
     }
 }
